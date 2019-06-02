@@ -1,5 +1,8 @@
 # FireBaseDemoApp
 This app shows 10 latest users details on the cardview and also add new user details from different activity in firebase database.
+Link to download demo app:
+
+https://github.com/sunilkrbajpai/FireBaseDemoApp/blob/master/FireBaseDemoApp.apk
 
 Image of MainActivity:
 
