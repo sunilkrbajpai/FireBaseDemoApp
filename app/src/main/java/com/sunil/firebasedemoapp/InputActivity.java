@@ -1,14 +1,20 @@
 package com.sunil.firebasedemoapp;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -37,11 +43,11 @@ public class InputActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 AddData();
+
+
                 name.setText("");
                 age.setText("");
                 rollno.setText("");
-
-
             }
         });
 
@@ -56,6 +62,23 @@ public class InputActivity extends AppCompatActivity {
 
         SaveData saveData=new SaveData(Name,Date,Age,RollNo);
         databaseReference.push().setValue(saveData);
-        Toast.makeText(getApplication(),"Saved",Toast.LENGTH_LONG).show();
+
+
+       DatabaseReference dbref=FirebaseDatabase.getInstance().getReference();
+       Query query=dbref.child("Users").limitToFirst(1);
+       query.addListenerForSingleValueEvent(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+               for(DataSnapshot snap:dataSnapshot.getChildren()){
+                   snap.getRef().removeValue();
+               }
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError databaseError) {
+
+           }
+       });
+        Toast.makeText(getApplication()," Record Saved",Toast.LENGTH_LONG).show();
     }
 }
