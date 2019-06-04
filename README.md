@@ -27,3 +27,7 @@ Users
    
    ![Capture](https://user-images.githubusercontent.com/25504941/58758095-ff073700-8533-11e9-91af-c50dd772b794.PNG)
 
+Also on new entry the oldest entry got deleted:
+
+![db](https://user-images.githubusercontent.com/25504941/58855410-a663a580-86bd-11e9-8ff7-59bcd45889f7.png)
+
